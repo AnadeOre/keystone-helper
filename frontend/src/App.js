@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react';
 import './App.css';
+import { BasicInfo } from './Components/BasicInfo';
 
 function App() {
 
   const [data, setData] = useState(null);
   const [code, setCode] = useState(null);
-  const [dataRecieved, setDataRecieved] = useState({});
-
-  useEffect(() => {
-    fetch("http://localhost:3001/api")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  }, []);
-
+  const [dataRecieved, setDataRecieved] = useState(null);
+  /*
+    useEffect(() => {
+      fetch("http://localhost:3001/api")
+        .then((res) => res.json())
+        .then((data) => setData(data.message));
+    }, []);
+  */
   const handleChange = e => {
     setCode(e.target.value);
   };
@@ -24,18 +25,18 @@ function App() {
       .then(data => setDataRecieved(data));
   }
 
+  let jsx = (
+    <form onSubmit={handleSubmit}>
+      <label> Code </label>
+      <input name="user" type="text" onChange={handleChange} />
+      <button>Search</button>
+    </form>
+  );
+
   return (
     <div className="App">
-      <header className="App-header">
-        This is a cool app
-        <p>{!data ? '...Loading' : data}</p>
-        <form onSubmit={handleSubmit}>
-          <label> Code </label>
-          <input name="user" type="text" onChange={handleChange} />
-          <button>Search</button>
-        </form>
-
-      </header>
+      Keystone App
+      {!dataRecieved ? jsx : <BasicInfo information={dataRecieved} />}
     </div>
   );
 }

@@ -18,7 +18,8 @@ router.get("/:code", async (req, res) => {
   data = {
     players: response.data.friendlies,
     keystoneLevel: response.data.fights[0].keystoneLevel,
-    affixes: response.data.fights[0].affixes
+    affixes: response.data.fights[0].affixes,
+    dungeonName: response.data.fights[0].name
   }
   console.log(data)
   await res.json(data)
