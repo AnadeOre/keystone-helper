@@ -14,7 +14,7 @@ export const BasicInfo = props => {
 			<h1>
 				{dungeonName} level {keystoneLevel}
 			</h1>
-			<h3>Affixes:</h3>
+			<h3>Affixes in this run:</h3>
 			<ul>
 				{weeklyAffixes.map(affix => (
 					<li key={affix.id}>{affix.name}</li>
