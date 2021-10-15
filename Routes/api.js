@@ -20,7 +20,7 @@ router.get("/:code", async (req, res) => {
 
   const query = `{
     reportData {
-      report(code: "C9gdqXjrpm8c7byH") {
+      report(code: "${code}") {
         fights(translate: true, killType: Kills) {
           averageItemLevel
           keystoneAffixes
