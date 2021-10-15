@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './App.css';
 import { BasicInfo } from './Components/BasicInfo';
 
 function App() {
 
-  const [data, setData] = useState(null);
   const [code, setCode] = useState(null);
   const [dataRecieved, setDataRecieved] = useState(null);
   /*
@@ -26,11 +25,13 @@ function App() {
   }
 
   let jsx = (
-    <form onSubmit={handleSubmit}>
-      <label> Code </label>
-      <input name="user" type="text" onChange={handleChange} />
-      <button>Search</button>
-    </form>
+    <div className='form-container'>
+      <form onSubmit={handleSubmit}>
+        <label> Insert WarcraftLogs report code: </label>
+        <input name="user" type="text" onChange={handleChange} />
+        <button>Analyze!</button>
+      </form>
+    </div>
   );
 
   return (

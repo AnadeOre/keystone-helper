@@ -2,27 +2,104 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 require('dotenv').config();
+const oauth = require('axios-oauth-client');
+const GraphQLClient = require('graphql-request').GraphQLClient;
 
 const APIKey = process.env.WCL_API_KEY;
 
-router.get("/", (req, res) => {
-  res.json({ message: 'Hi' })
-  console.log('Hello from server')
-});
+
+const clientID = process.env.WCL_CLIENT;
+const clientSecret = process.env.WCL_SECRET;
+const oAuthEndpoint = process.env.WCL_OAUTH_ENDPOINT;
+const wclEndpoint = process.env.WCL_GQL_ENDPOINT
+
+
 router.get("/:code", async (req, res) => {
   const { code } = req.params;
+
+
+  const query = `{
+    reportData {
+      report(code: "C9gdqXjrpm8c7byH") {
+        fights(translate: true, killType: Kills) {
+          averageItemLevel
+          keystoneAffixes
+          keystoneLevel
+          id
+          startTime
+          endTime
+          keystoneTime
+          gameZone {
+            id
+            name
+          }
+          friendlyPlayers
+          encounterID
+          dungeonPulls {
+            name
+            encounterID
+            enemyNPCs{
+              id
+              gameID
+            }
+            maps {
+              id
+            }
+            x
+            y
+            endTime
+            startTime
+          }
+          boundingBox {
+            minX
+            minY
+          }          
+        }
+        region {
+          slug
+        }
+        title
+        startTime
+        endTime
+        masterData{
+          actors(type: "Player"){
+            id
+            name
+            subType
+            server
+          }
+        }
+      } 
+    }
+  }`
+
+  const getClientCredentials = oauth.client(axios.create(), {
+    url: oAuthEndpoint,
+    grant_type: 'client_credentials',
+    client_id: clientID,
+    client_secret: clientSecret
+  });
+
+  const auth = await getClientCredentials();
+
+  const graphQLClient = new GraphQLClient(wclEndpoint, {
+    headers: {
+      authorization: `Bearer ${auth.access_token}`
+    }
+  })
+  const data = await graphQLClient.request(query)
+  //console.log(JSON.stringify(data, undefined, 2))
+
+  /*
   const apiURL = `https://www.warcraftlogs.com:443/v1/report/fights/${code}?translate=false&api_key=${APIKey}`
 
   //axios.get(apiURL).then(response => res.json(response))
+ 
   const response = await axios.get(apiURL);
-  data = {
-    players: response.data.friendlies,
-    keystoneLevel: response.data.fights[0].keystoneLevel,
-    affixes: response.data.fights[0].affixes,
-    dungeonName: response.data.fights[0].name
-  }
-  console.log(data)
-  await res.json(data)
+*/
+  const dataToExtract = JSON.stringify(data, undefined, 2)
+  res.send(dataToExtract)
+
 });
 
 /*
