@@ -12,6 +12,7 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
+		"@rpglogs/api-sdk": "^1.0.0",
 		"axios": "^0.23.0",
 		"axios-oauth-client": "^1.4.4",
 		"concurrently": "^6.3.0",
