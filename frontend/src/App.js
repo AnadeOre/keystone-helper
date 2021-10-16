@@ -5,7 +5,7 @@ import { Summary } from './Components/Summary';
 
 function App() {
 
-  const [code, setCode] = useState(null);
+  const [link, setLink] = useState(null);
   const [dataRecieved, setDataRecieved] = useState(null);
   /*
     useEffect(() => {
@@ -15,11 +15,22 @@ function App() {
     }, []);
   */
   const handleChange = e => {
-    setCode(e.target.value);
+    setLink(e.target.value);
   };
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    let code
+    if (link.length > 16) {
+      code = link.substring(link.length - 16)
+      console.log(code)
+    }
+    else {
+      code = link
+    }
+
+    console.log(code)
     fetch(`http://localhost:3001/api/${code}`)
       .then((res) => res.json())
       .then(data => setDataRecieved(data));
@@ -30,7 +41,7 @@ function App() {
       <form onSubmit={handleSubmit}>
         <label> Insert WarcraftLogs report code: </label>
         <input name="user" type="text" onChange={handleChange} />
-        <button>Analyze!</button>
+        <button type='submit'>Analyze!</button>
       </form>
     </div>
   );
