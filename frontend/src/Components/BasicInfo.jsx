@@ -1,12 +1,14 @@
 import React from 'react';
-import Affixes from '../Data/Affixes.js';
+import { getAffixesNames } from '../Utils/getAffixesNames';
 import './BasicInfo.css';
 
 export const BasicInfo = props => {
 	const { report } = props.information.reportData;
-	const { endTime, startTime, fights, region, title, masterData } = report;
+	const { table, endTime, startTime, fights, region, title, masterData } = report;
 	const { averageItemLevel, keystoneAffixes, keystoneLevel, keystoneTime, gameZone, dungeonPulls } =
 		fights[0];
+	const { totalTime, damageDone, healingDone, deathEvents } = table.data;
+	console.log(damageDone);
 
 	const dungeonName = gameZone.name;
 	const timeKeyTook = (endTime - startTime) / (60 * 1000);
@@ -18,13 +20,9 @@ export const BasicInfo = props => {
 
 	//Player info:
 	const players = masterData.actors;
-	console.log(players);
-	const weeklyAffixes = [];
-	for (let i = 0; i < 4; i++) {
-		weeklyAffixes.push(
-			Affixes.affixes.filter(generalAffix => generalAffix.id === keystoneAffixes[i])[0]
-		);
-	}
+
+	//Get affixes
+	const weeklyAffixes = getAffixesNames(keystoneAffixes);
 
 	return (
 		<div>
@@ -34,7 +32,9 @@ export const BasicInfo = props => {
 			<h3>Affixes in this run:</h3>
 			<ul>
 				{weeklyAffixes.map(affix => (
-					<li key={affix.id}>{affix.name}</li>
+					<li key={affix.id} className={affix.difficulty}>
+						{affix.name}
+					</li>
 				))}
 			</ul>
 			<p>
@@ -45,7 +45,7 @@ export const BasicInfo = props => {
 				<h3>Players:</h3>
 				<ul>
 					{players.map(player => (
-						<li>
+						<li key={player.id}>
 							<span>
 								{player.name}-{player.server}
 							</span>{' '}

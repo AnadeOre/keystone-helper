@@ -1,0 +1,58 @@
+.untimed {
+	color: red;
+}
+.timed {
+	color: rgb(23, 230, 23);
+}
+ul {
+	width: 300px;
+	text-align: left;
+	margin: auto;
+}
+
+/* Affixes dificulties */
+
+.easy {
+	color: #50fa7b;
+}
+
+.med {
+	color: #ffb86c;
+}
+
+.hard {
+	color: #f55;
+}
+
+.summary-container {
+	display: flex;
+	flex-direction: row;
+}
+
+.affixes-div {
+	width: 15%;
+}
+
+.general-div {
+	width: 20%;
+}
+
+.times-div {
+	width: 20%;
+}
+
+.damage-done {
+	width: 22.5%;
+}
+
+.healing-done {
+	width: 22.5%;
+}
+
+.deaths-summary .hide {
+	display: none;
+}
+
+.deaths-summary:hover .hide {
+	display: inline;
+}

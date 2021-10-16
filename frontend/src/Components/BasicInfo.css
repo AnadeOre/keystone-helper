@@ -46,3 +46,17 @@ ul {
 .Warrior {
 	color: #c69b6d;
 }
+
+/* Affixes dificulties */
+
+.easy {
+	color: #50fa7b;
+}
+
+.med {
+	color: #ffb86c;
+}
+
+.hard {
+	color: #f55;
+}

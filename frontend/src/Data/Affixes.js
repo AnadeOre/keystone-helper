@@ -19,6 +19,7 @@ const Affixes = {
         "href": "https://us.api.blizzard.com/data/wow/keystone-affix/3?namespace=static-9.1.0_39069-us"
       },
       "name": "Volcanic",
+      "difficulty": "easy",
       "id": 3
     },
     {
@@ -26,6 +27,7 @@ const Affixes = {
         "href": "https://us.api.blizzard.com/data/wow/keystone-affix/4?namespace=static-9.1.0_39069-us"
       },
       "name": "Necrotic",
+      "difficulty": "hard",
       "id": 4
     },
     {
@@ -40,6 +42,7 @@ const Affixes = {
         "href": "https://us.api.blizzard.com/data/wow/keystone-affix/6?namespace=static-9.1.0_39069-us"
       },
       "name": "Raging",
+      "difficulty": "med",
       "id": 6
     },
     {
@@ -47,6 +50,7 @@ const Affixes = {
         "href": "https://us.api.blizzard.com/data/wow/keystone-affix/7?namespace=static-9.1.0_39069-us"
       },
       "name": "Bolstering",
+      "difficulty": "med",
       "id": 7
     },
     {
@@ -54,6 +58,7 @@ const Affixes = {
         "href": "https://us.api.blizzard.com/data/wow/keystone-affix/8?namespace=static-9.1.0_39069-us"
       },
       "name": "Sanguine",
+      "difficulty": "easy",
       "id": 8
     },
     {
@@ -61,6 +66,7 @@ const Affixes = {
         "href": "https://us.api.blizzard.com/data/wow/keystone-affix/9?namespace=static-9.1.0_39069-us"
       },
       "name": "Tyrannical",
+      "difficulty": "hard",
       "id": 9
     },
     {
@@ -68,6 +74,7 @@ const Affixes = {
         "href": "https://us.api.blizzard.com/data/wow/keystone-affix/10?namespace=static-9.1.0_39069-us"
       },
       "name": "Fortified",
+      "difficulty": "hard",
       "id": 10
     },
     {
@@ -75,6 +82,7 @@ const Affixes = {
         "href": "https://us.api.blizzard.com/data/wow/keystone-affix/11?namespace=static-9.1.0_39069-us"
       },
       "name": "Bursting",
+      "difficulty": "med",
       "id": 11
     },
     {
@@ -82,6 +90,7 @@ const Affixes = {
         "href": "https://us.api.blizzard.com/data/wow/keystone-affix/12?namespace=static-9.1.0_39069-us"
       },
       "name": "Grievous",
+      "difficulty": "med",
       "id": 12
     },
     {
@@ -89,6 +98,7 @@ const Affixes = {
         "href": "https://us.api.blizzard.com/data/wow/keystone-affix/13?namespace=static-9.1.0_39069-us"
       },
       "name": "Explosive",
+      "difficulty": "med",
       "id": 13
     },
     {
@@ -96,6 +106,7 @@ const Affixes = {
         "href": "https://us.api.blizzard.com/data/wow/keystone-affix/14?namespace=static-9.1.0_39069-us"
       },
       "name": "Quaking",
+      "difficulty": "easy",
       "id": 14
     },
     {
@@ -131,6 +142,7 @@ const Affixes = {
         "href": "https://us.api.blizzard.com/data/wow/keystone-affix/121?namespace=static-9.1.0_39069-us"
       },
       "name": "Prideful",
+      "difficulty": "med",
       "id": 121
     },
     {
@@ -138,6 +150,7 @@ const Affixes = {
         "href": "https://us.api.blizzard.com/data/wow/keystone-affix/122?namespace=static-9.1.0_39069-us"
       },
       "name": "Inspiring",
+      "difficulty": "easy",
       "id": 122
     },
     {
@@ -145,6 +158,7 @@ const Affixes = {
         "href": "https://us.api.blizzard.com/data/wow/keystone-affix/123?namespace=static-9.1.0_39069-us"
       },
       "name": "Spiteful",
+      "difficulty": "med",
       "id": 123
     },
     {
@@ -152,6 +166,7 @@ const Affixes = {
         "href": "https://us.api.blizzard.com/data/wow/keystone-affix/124?namespace=static-9.1.0_39069-us"
       },
       "name": "Storming",
+      "difficulty": "med",
       "id": 124
     },
     {
@@ -159,9 +174,9 @@ const Affixes = {
         "href": "https://us.api.blizzard.com/data/wow/keystone-affix/128?namespace=static-9.1.0_39069-us"
       },
       "name": "Tormented",
+      "difficulty": "med",
       "id": 128
     }
   ]
 }
-
 export default Affixes

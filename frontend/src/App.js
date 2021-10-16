@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import { BasicInfo } from './Components/BasicInfo';
+import { Summary } from './Components/Summary';
 
 function App() {
 
@@ -37,7 +38,7 @@ function App() {
   return (
     <div className="App">
       Keystone App
-      {!dataRecieved ? jsx : <BasicInfo information={dataRecieved} />}
+      {!dataRecieved ? jsx : <Summary information={dataRecieved} />}
     </div>
   );
 }
