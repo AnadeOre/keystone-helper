@@ -21,6 +21,7 @@ router.get("/:code", async (req, res) => {
   const query = `{
     reportData {
       report(code: "${code}") {
+        table(encounterID: 12287 dataType:  Summary startTime: 0 endTime: 1822435)
         fights(translate: true, killType: Kills) {
           averageItemLevel
           keystoneAffixes

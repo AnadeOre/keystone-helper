@@ -12,14 +12,12 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-//app.use(cors({ origin: 'http://localhost:3000' }))
 app.use(cors({
   origin: 'http://localhost:3000'
 }))
 
 // Have Node serve the files for our built React app
 //app.use(express.static(path.resolve(__dirname, '../client/build')));
-
 
 
 // HTTP request logger
