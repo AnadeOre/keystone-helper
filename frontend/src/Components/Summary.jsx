@@ -1,23 +1,31 @@
-import React from 'react';
-import { getAffixesNames } from '../Utils/getAffixesNames';
-import getDeathsAmounts from '../Utils/getDeathsAmounts';
-import './Summary.css';
+import React, { useEffect } from "react";
+import { getAffixesNames } from "../Utils/getAffixesNames";
+import getDeathsAmounts from "../Utils/getDeathsAmounts";
+import "../Styles/Summary.css";
 
-export const Summary = props => {
-	const roundTwoDecimals = num => {
+export const Summary = (props) => {
+	console.log("in summary");
+	useEffect(() => {
+		console.log(props);
+	}, []);
+
+	const roundTwoDecimals = (num) => {
 		return Math.round(num * 100) / 100;
 	};
-	const toMinutes = ms => {
+	const toMinutes = (ms) => {
 		return ms / (60 * 1000);
 	};
-	function add(accumulator, a) {
-		return accumulator + a;
-	}
 
-	const { report } = props.information.reportData;
+	const { report } = props.props.reportData;
 	const { table, fights, region, title, masterData } = report;
-	const { averageItemLevel, keystoneAffixes, keystoneLevel, keystoneTime, gameZone, dungeonPulls } =
-		fights[0];
+	const {
+		averageItemLevel,
+		keystoneAffixes,
+		keystoneLevel,
+		keystoneTime,
+		gameZone,
+		dungeonPulls,
+	} = fights[0];
 	const { totalTime, damageDone, healingDone, deathEvents } = table.data;
 
 	const dungeonName = gameZone.name;
@@ -25,8 +33,8 @@ export const Summary = props => {
 	// Key times
 	const timeLeft = toMinutes(keystoneTime - totalTime);
 	let keyTimeColor;
-	if (timeLeft < 0) keyTimeColor = 'untimed';
-	else keyTimeColor = 'timed';
+	if (timeLeft < 0) keyTimeColor = "untimed";
+	else keyTimeColor = "timed";
 
 	//Affixes
 	const weeklyAffixes = getAffixesNames(keystoneAffixes);
@@ -34,8 +42,14 @@ export const Summary = props => {
 	//Deaths
 	const deathsCount = getDeathsAmounts(deathEvents);
 	let deathNumber = 0;
-	deathsCount.forEach(death => (deathNumber = deathNumber + death.amount));
-	//const deathsSum = deathsCount.reduce(add, 0);
+	deathsCount.forEach((death) => (deathNumber = deathNumber + death.amount));
+	/*
+	return (
+		<div>
+			<p>estoye n summary</p>
+		</div>
+	);
+	*/
 	return (
 		<div>
 			<h1>
@@ -44,7 +58,7 @@ export const Summary = props => {
 			<div className='summary-container'>
 				<div className='affixes-div'>
 					<ul className='affixes-ul'>
-						{weeklyAffixes.map(affix => (
+						{weeklyAffixes.map((affix) => (
 							<li key={affix.id} className={affix.difficulty}>
 								{affix.name}
 							</li>
@@ -77,7 +91,9 @@ export const Summary = props => {
 					<ul>
 						<li>
 							<span>Time: </span>
-							<span className={keyTimeColor}>{roundTwoDecimals(toMinutes(totalTime))}</span>
+							<span className={keyTimeColor}>
+								{roundTwoDecimals(toMinutes(totalTime))}
+							</span>
 						</li>
 						<li>
 							<span>Key time: </span>

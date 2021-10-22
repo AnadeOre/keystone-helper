@@ -1,57 +1,63 @@
-import { useState } from 'react';
-import './App.css';
-import { BasicInfo } from './Components/BasicInfo';
-import { Summary } from './Components/Summary';
-
+import { useState } from "react";
+import { MainScreen } from "./Components/MainScreen";
+import { Summary } from "./Components/Summary";
+import { Switch, Router, Route, useHistory } from "react-router";
 function App() {
+	const [link, setLink] = useState(null);
+	const [dataRecieved, setDataRecieved] = useState(null);
+	const history = useHistory();
 
-  const [link, setLink] = useState(null);
-  const [dataRecieved, setDataRecieved] = useState(null);
-  /*
-    useEffect(() => {
-      fetch("http://localhost:3001/api")
-        .then((res) => res.json())
-        .then((data) => setData(data.message));
-    }, []);
-  */
-  const handleChange = e => {
-    setLink(e.target.value);
-  };
+	const handleChange = (e) => {
+		setLink(e.target.value);
+	};
 
-  const handleSubmit = e => {
-    e.preventDefault();
+	async function fetchApi(code) {
+		try {
+			let res = await fetch(`http://localhost:3001/api/${code}`);
+			let responseIsOK = res && res.ok;
+			if (responseIsOK) {
+				let data = await res.json();
+				return data;
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	}
 
-    let code
-    if (link.length > 16) {
-      code = link.substring(link.length - 16)
-      console.log(code)
-    }
-    else {
-      code = link
-    }
+	async function handleSubmit(e) {
+		console.log("submitting");
+		let code;
+		if (link.length > 16) {
+			code = link.substring(link.length - 16);
+			console.log(code);
+		} else {
+			code = link;
+			console.log(code);
+		}
+		const dataFromAPI = await fetchApi(code);
+		if (!dataFromAPI.error) {
+			setDataRecieved(dataFromAPI);
+			history.push(`summary`);
+		}
+	}
 
-    console.log(code)
-    fetch(`http://localhost:3001/api/${code}`)
-      .then((res) => res.json())
-      .then(data => setDataRecieved(data));
-  }
-
-  let jsx = (
-    <div className='form-container'>
-      <form onSubmit={handleSubmit}>
-        <label> Insert WarcraftLogs report code: </label>
-        <input name="user" type="text" onChange={handleChange} />
-        <button type='submit'>Analyze!</button>
-      </form>
-    </div>
-  );
-
-  return (
-    <div className="App">
-      Keystone App
-      {!dataRecieved ? jsx : <Summary information={dataRecieved} />}
-    </div>
-  );
+	return (
+		<Router history={history}>
+			<div>
+				<Switch>
+					<Route exact path='/'>
+						<MainScreen
+							onCodeWriting={handleChange}
+							onCodeSubmit={handleSubmit}
+						/>
+					</Route>
+					<Route exact path='/summary'>
+						<Summary props={dataRecieved} />
+					</Route>
+				</Switch>
+			</div>
+		</Router>
+	);
 }
 
 export default App;
