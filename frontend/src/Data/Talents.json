@@ -1,9 +1,4 @@
 {
-	"_links": {
-		"self": {
-			"href": "https://us.api.blizzard.com/data/wow/talent/?namespace=static-9.1.0_39069-us"
-		}
-	},
 	"talents": [
 		{
 			"key": {
