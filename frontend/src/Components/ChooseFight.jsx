@@ -64,7 +64,9 @@ export const ChooseFight = ({ props }) => {
                       {fight.gameZone.name} Level {fight.keystoneLevel}
                     </button>
                   ) : (
-                    <div>{fight.gameZone.name} is not a key</div>
+                    <div className='notadungeon'>
+                      {fight.gameZone.name} is not a key
+                    </div>
                   )}
                 </div>
               ))}

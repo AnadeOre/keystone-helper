@@ -9,6 +9,10 @@
   text-align: center;
 }
 
+.fightsSection {
+  justify-content: center;
+}
+
 button.choose {
   height: 100px;
   color: rgba(255, 255, 255, 0.75);
@@ -75,4 +79,21 @@ button.choose:focus {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+.notadungeon {
+  text-align: center;
+  background-image: url('../Images/Bowmsandi.jpg');
+  background-size: cover;
+  height: 100px;
+  color: rgba(255, 255, 255, 0.75);
+  width: 260px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.2em;
+  font-weight: bold;
+  border-radius: 0.25em;
+  padding: 0.2em 0.3em 0.2em;
+  margin: 15px;
+  transition: all 0.1s;
 }
