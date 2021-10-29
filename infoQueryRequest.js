@@ -14,7 +14,6 @@ module.exports = async function (code) {
     reportData {
       report(code: "${code}") {
         fights(translate: true, killType: Kills) {
-          averageItemLevel
           keystoneAffixes
           keystoneLevel
           id
@@ -25,42 +24,9 @@ module.exports = async function (code) {
             id
             name
           }
-          friendlyPlayers
-          encounterID
-          dungeonPulls {
-            name
-            encounterID
-            enemyNPCs{
-              id
-              gameID
-            }
-            maps {
-              id
-            }
-            x
-            y
-            endTime
-            startTime
-          }
-          boundingBox {
-            minX
-            minY
-          }          
-        }
-        region {
-          slug
+          encounterID         
         }
         title
-        startTime
-        endTime
-        masterData{
-          actors(type: "Player"){
-            id
-            name
-            subType
-            server
-          }
-        }
       } 
     }
   }`;
