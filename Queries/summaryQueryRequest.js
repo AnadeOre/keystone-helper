@@ -9,12 +9,12 @@ const clientSecret = process.env.WCL_SECRET;
 const oAuthEndpoint = process.env.WCL_OAUTH_ENDPOINT;
 const wclEndpoint = process.env.WCL_GQL_ENDPOINT;
 
-module.exports = async function (code, id, startTime, EndTime) {
+module.exports = async function (code, id, startTime, endTime) {
   const query = `{
     reportData {
       report(code: "${code}") {
-        table(encounterID: ${id} dataType:  Summary startTime: ${startTime} endTime: ${EndTime})
-        fights(translate: true, killType: Kills) {
+        table(dataType:  Summary startTime: ${startTime} endTime: ${endTime})
+        fights(encounterID: ${id} translate: true, killType: All) {
           averageItemLevel
           keystoneAffixes
           keystoneLevel
