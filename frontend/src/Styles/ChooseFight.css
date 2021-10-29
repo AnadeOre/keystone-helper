@@ -1,0 +1,78 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.titleChoose {
+  text-align: center;
+}
+
+button.choose {
+  height: 100px;
+  color: rgba(255, 255, 255, 0.75);
+  width: 260px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.2em;
+  font-weight: bold;
+  border-radius: 0.25em;
+  padding: 0.2em 0.3em 0.2em;
+  margin: 15px;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+button.choose:hover,
+button.choose:focus {
+  background-color: #383f4e;
+  outline: none;
+  color: white;
+  border-color: rgba(255, 255, 255, 0.75);
+  scale: 1.001;
+}
+.deotherside {
+  background-image: url('../Images/DOS.jpeg');
+  background-size: cover;
+}
+.mistsoftirnascithe {
+  background-image: url('../Images/MOTS.jpg');
+  background-size: cover;
+}
+
+.theaterofpain {
+  background-image: url('../Images/TOP.jpg');
+  background-size: cover;
+}
+
+.plaguefall {
+  background-image: url('../Images/PF.jpg');
+  background-size: cover;
+}
+
+.sanguinedepths {
+  background-image: url('../Images/SD.jpg');
+  background-size: cover;
+}
+
+.hallsofatonement {
+  background-image: url('../Images/HOA.jpeg');
+  background-size: cover;
+}
+
+.spiresofascension {
+  background-image: url('../Images/SOA.jpg');
+  background-size: cover;
+}
+
+.necroticwake {
+  background-image: url('../Images/NW.jpg');
+  background-size: cover;
+}
+
+.fightsSection {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
