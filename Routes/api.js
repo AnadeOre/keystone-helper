@@ -1,18 +1,22 @@
 const express = require('express');
 const router = express.Router();
-const queryReq = require('../queryRequest')
+const infoQueryReq = require('../infoQueryRequest');
+const summaryQueryReq = require('../summaryQueryRequest');
 
-
-router.get("/:code", async (req, res) => {
-
+router.get('/firstInfo/:code', async (req, res) => {
   const { code } = req.params;
 
-  const data = await queryReq(code)
+  const data = await infoQueryReq(code);
 
-  res.send(data)
-
+  res.send(data);
 });
 
+router.get('summary/:code/:id/:startTime/:endTime', async (req, res) => {
+  const { code, id, startTime, endTime } = req.params;
 
+  const data = await summaryQueryReq(code, id, startTime, endTime);
+
+  res.send(data);
+});
 
 module.exports = router;
