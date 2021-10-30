@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router';
-import getAffixesNames from '../Utils/getAffixesNames';
-import getDeathsAmounts from '../Utils/getDeathsAmounts';
+import React from 'react';
 import '../Styles/Summary.css';
+import { roundTwoDecimals } from '../Utils/UtilsFunctions';
+import { Affixes } from './Affixes';
+import { DeathsSummary } from './DeathsSummary';
+import { DPSSummary } from './DPSSummary';
+import { HPSSummary } from './HPSSummary';
+import { Times } from './Times';
 
 export const Summary = ({ data, fightIndex }) => {
-  const roundTwoDecimals = num => {
-    return Math.round(num * 100) / 100;
-  };
-  const toMinutes = ms => {
-    return ms / (60 * 1000);
-  };
-
   const report = data.reportData.report;
   const { fights, masterData, region, table, title } = report;
 
@@ -35,87 +31,24 @@ export const Summary = ({ data, fightIndex }) => {
   } = table.data;
 
   const dungeonName = gameZone.name;
-  // Key times
-  const timeLeft = toMinutes(keystoneTime - totalTime);
-  let keyTimeColor;
-  if (timeLeft < 0) keyTimeColor = 'untimed';
-  else keyTimeColor = 'timed';
-
-  //Affixes
-  const weeklyAffixes = getAffixesNames(keystoneAffixes);
-
-  //Deaths
-  const deathsCount = getDeathsAmounts(deathEvents);
-  let deathNumber = 0;
-  deathsCount.forEach(death => (deathNumber = deathNumber + death[1]));
 
   return (
     <div>
-      <div>
-        <div>
-          <h1>
-            {dungeonName} level {keystoneLevel}
-          </h1>
-          <div className='summary-container'>
-            <div className='affixes-div'>
-              {
-                <ul className='affixes-ul'>
-                  {weeklyAffixes.map(affix => (
-                    <li key={affix.id} className={affix.difficulty}>
-                      {affix.name}
-                    </li>
-                  ))}
-                </ul>
-              }
-            </div>
-            <div className='general-div'>
-              <ul>
-                <li className='deaths-summary '>
-                  <span>Deaths: </span>
-                  <span>{deathNumber}</span>
-                  <div className='deaths-summary hide'>
-                    <ul>
-                      {deathsCount.map((death, index) => (
-                        <li key={index}>
-                          <span>{death[0]}: </span>
-                          {death[1]}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </li>
-                <li className='av-ilvl'>
-                  <span>Average Item Level: </span>
-                  <span>{roundTwoDecimals(averageItemLevel)}</span>
-                </li>
-              </ul>
-            </div>
-            <div className='times-div'>
-              <ul>
-                <li>
-                  <span>Time: </span>
-                  <span className={keyTimeColor}>
-                    {roundTwoDecimals(toMinutes(totalTime))}
-                  </span>
-                </li>
-                <li>
-                  <span>Key time: </span>
-                  <span>{roundTwoDecimals(toMinutes(keystoneTime))}</span>
-                </li>
-                <li>
-                  <span>Time left: </span>
-                  <span>{roundTwoDecimals(timeLeft)} </span>
-                </li>
-              </ul>
-            </div>
-            <div className='damage-done'>
-              <h4>Damage Done</h4> <ul></ul>
-            </div>
-            <div className='healing-done'>
-              <h4>Healing Done</h4> <ul></ul>
-            </div>
+      <h1 className='summary-header'>
+        {dungeonName} level {keystoneLevel}
+      </h1>
+      <div className='summary-container'>
+        <Affixes keyAffixes={keystoneAffixes} />
+        <div className='general-div'>
+          <DeathsSummary deathEvents={deathEvents} />
+          <div className='av-ilvl'>
+            <span>Average Item Level: </span>
+            <span>{roundTwoDecimals(averageItemLevel)}</span>
           </div>
         </div>
+        <Times totalTime={totalTime} keystoneTime={keystoneTime} />
+        <DPSSummary />
+        <HPSSummary />
       </div>
     </div>
   );

@@ -34,6 +34,7 @@ function App() {
       code = link;
     }
     const dataFromAPI = await fetchApi(code);
+    if (dataFromAPI.error) console.log(dataFromAPI.error);
     if (!dataFromAPI.error) {
       setDataRecieved(dataFromAPI);
       history.push(`/${code}`);
