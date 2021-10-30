@@ -1,5 +1,5 @@
 import React from 'react';
-import getAffixesNames from '../Utils/getAffixesNames';
+import getAffixesNames from '../../Utils/getAffixesNames';
 
 export const Affixes = ({ keyAffixes }) => {
   const weeklyAffixes = getAffixesNames(keyAffixes);

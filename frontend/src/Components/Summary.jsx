@@ -1,7 +1,7 @@
 import React from 'react';
 import '../Styles/Summary.css';
 import { roundTwoDecimals } from '../Utils/UtilsFunctions';
-import { Affixes } from './Affixes';
+import { Affixes } from './Summary/Affixes';
 import { DeathsSummary } from './DeathsSummary';
 import { DPSSummary } from './DPSSummary';
 import { HPSSummary } from './HPSSummary';
