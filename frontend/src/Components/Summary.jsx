@@ -2,10 +2,10 @@ import React from 'react';
 import '../Styles/Summary.css';
 import { roundTwoDecimals } from '../Utils/UtilsFunctions';
 import { Affixes } from './Summary/Affixes';
-import { DeathsSummary } from './DeathsSummary';
-import { DPSSummary } from './DPSSummary';
-import { HPSSummary } from './HPSSummary';
-import { Times } from './Times';
+import { DeathsSummary } from './Summary/DeathsSummary';
+import { DPSSummary } from './Summary/DPSSummary';
+import { HPSSummary } from './Summary/HPSSummary';
+import { Times } from './Summary/Times';
 
 export const Summary = ({ data, fightIndex }) => {
   const report = data.reportData.report;

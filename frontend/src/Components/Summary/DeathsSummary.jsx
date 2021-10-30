@@ -1,5 +1,5 @@
 import React from 'react';
-import getDeathsAmounts from '../Utils/getDeathsAmounts';
+import getDeathsAmounts from '../../Utils/getDeathsAmounts';
 
 export const DeathsSummary = ({ deathEvents }) => {
   const deathsCount = getDeathsAmounts(deathEvents);

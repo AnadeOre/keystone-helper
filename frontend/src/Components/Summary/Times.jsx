@@ -1,5 +1,5 @@
 import React from 'react';
-import { roundTwoDecimals, toMinutes } from '../Utils/UtilsFunctions';
+import { roundTwoDecimals, toMinutes } from '../../Utils/UtilsFunctions';
 
 export const Times = ({ totalTime, keystoneTime }) => {
   const timeLeft = toMinutes(keystoneTime - totalTime);
