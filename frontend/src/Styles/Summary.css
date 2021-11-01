@@ -48,11 +48,3 @@ ul {
 .healing-done {
   width: 22.5%;
 }
-
-.deaths-summary .hide {
-  display: none;
-}
-
-.deaths-summary:hover .hide {
-  display: inline;
-}

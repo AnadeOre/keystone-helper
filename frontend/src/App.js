@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { MainScreen } from './Components/MainScreen';
-import { Summary } from './Components/Summary';
 import { Switch, Router, Route, useHistory } from 'react-router';
 import { ChooseFight } from './Components/ChooseFight';
 
@@ -26,7 +25,8 @@ function App() {
     }
   }
 
-  async function handleSubmit() {
+  async function handleSubmit(setIsLoading) {
+    setIsLoading(true);
     let code;
     if (link.length > 16) {
       code = link.substring(link.length - 16);
@@ -34,28 +34,26 @@ function App() {
       code = link;
     }
     const dataFromAPI = await fetchApi(code);
-    if (dataFromAPI.error) console.log(dataFromAPI.error);
     if (!dataFromAPI.error) {
       setDataRecieved(dataFromAPI);
+      setIsLoading(false);
       history.push(`/${code}`);
     }
   }
 
   return (
     <Router history={history}>
-      <div>
-        <Switch>
-          <Route exact path='/'>
-            <MainScreen
-              onCodeWriting={handleChange}
-              onCodeSubmit={handleSubmit}
-            />
-          </Route>
-          <Route exact path='/:code'>
-            <ChooseFight props={dataRecieved} />
-          </Route>
-        </Switch>
-      </div>
+      <Switch>
+        <Route exact path='/'>
+          <MainScreen
+            onCodeWriting={handleChange}
+            onCodeSubmit={handleSubmit}
+          />
+        </Route>
+        <Route exact path='/:code'>
+          <ChooseFight props={dataRecieved} />
+        </Route>
+      </Switch>
     </Router>
   );
 }
