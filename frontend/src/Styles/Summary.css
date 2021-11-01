@@ -24,6 +24,11 @@ ul {
   color: #f55;
 }
 
+.summary-header {
+  text-align: center;
+  color: #f1c40f;
+}
+
 .summary-container {
   display: flex;
   flex-direction: row;
