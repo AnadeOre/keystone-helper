@@ -1,6 +1,6 @@
 import React from 'react';
 import { getAffixesNames } from '../Utils/getAffixesNames';
-import './BasicInfo.css';
+import '../Styles/BasicInfo.css';
 
 export const BasicInfo = props => {
 	const { report } = props.information.reportData;
