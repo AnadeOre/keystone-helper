@@ -1,0 +1,19 @@
+.notdisplayed {
+  display: none;
+}
+
+.displayed {
+  display: inline;
+}
+
+.green {
+  color: #50fa7b;
+}
+
+.yellow {
+  color: #ffb86c;
+}
+
+.red {
+  color: #f55;
+}
